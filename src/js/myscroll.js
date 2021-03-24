@@ -2,7 +2,7 @@ let sectionsScroll = document.querySelector('.scroll');
 let sections = document.querySelectorAll('.section-link');
 let rightNav = document.querySelectorAll('.rightnav-link');
 let windowHeight = window.innerHeight;
-​
+
 export function init() {
   sectionsScroll.addEventListener('scroll', () => {
     let scrollTop = sectionsScroll.scrollTop;
@@ -11,13 +11,9 @@ export function init() {
         rightNav.forEach((link) => {
           link.classList.remove('current-section');
         });
-​
+
         rightNav[i].classList.add('current-section');
       }
     })
   });
 }
-
-
-
-

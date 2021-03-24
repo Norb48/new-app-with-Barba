@@ -7,22 +7,22 @@ import animEnter from './animEnter';
 import animLeave from './animLeave';
 import leaveToProject from './leaveToProjekt';
 import enterToProject from './enterToProjekt';
-import * as myScroll from './myscroll'
-​
+import * as myScroll from './myscroll';
+
 barba.use(barbaPrefetch);
-​
+
 const reset = () => gsap.set('.scroll', {
   yPercent: 120,
 });
-​
+
 const resetNav = () => gsap.set('.rightnav-link', {
   autoAlpha: 0,
 });
-​
+
 barba.hooks.afterEnter((data) => {
   myScroll.init();
 });
-​
+
 barba.init({
   timeout: 5000,
   debug: true,
@@ -39,7 +39,7 @@ barba.init({
       once({ next }) {
         reset();
         resetNav();
-​
+
         gsap.from('.leftnav-link', {
           duration: 0.5,
           autoAlpha: 0,
@@ -149,7 +149,7 @@ barba.init({
 // })
 
 
- 
+
 
 
 // let leftNav = document.querySelectorAll('.leftnav-link');
