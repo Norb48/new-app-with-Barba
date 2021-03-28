@@ -19,8 +19,8 @@ const resetNav = () => gsap.set('.rightnav-link', {
   autoAlpha: 0,
 });
 
-barba.hooks.afterEnter((data) => {
-  myScroll.init();
+barba.hooks.afterEnter(({ next }) => {
+  myScroll.init(next.container);
 });
 
 barba.init({

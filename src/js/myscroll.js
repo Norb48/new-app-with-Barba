@@ -1,13 +1,15 @@
-let sectionsScroll = document.querySelector('.scroll');
-let sections = document.querySelectorAll('.section-link');
-let rightNav = document.querySelectorAll('.rightnav-link');
-let windowHeight = window.innerHeight;
+let sectionsScroll, sections, rightNav;
 
-export function init() {
+export function init(container) {
+  sectionsScroll = container.querySelector('.scroll');
+  sections = container.querySelectorAll('.section-link');
+  rightNav = container.querySelectorAll('.rightnav-link');
+
   sectionsScroll.addEventListener('scroll', () => {
     let scrollTop = sectionsScroll.scrollTop;
+
     sections.forEach((section, i) => {
-      if (section.offsetTop < scrollTop + windowHeight / 4 && scrollTop < section.offsetTop + windowHeight / 4) {
+      if (section.offsetTop < scrollTop + window.innerHeight / 4 && scrollTop < section.offsetTop + window.innerHeight / 4) {
         rightNav.forEach((link) => {
           link.classList.remove('current-section');
         });
