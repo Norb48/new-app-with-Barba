@@ -2,12 +2,21 @@ import barba from '@barba/core';
 import barbaPrefetch from '@barba/prefetch';
 import gsap from 'gsap';
 import '../css/style.scss';
+// import lazyLoading from 'loading-attribute-polyfill';
 import animOnes from './animOnes';
 import animEnter from './animEnter';
 import animLeave from './animLeave';
+import leaveToWork from './leaveToWork';
+import enterToWork from './enterToWork';
 import leaveToProject from './leaveToProjekt';
 import enterToProject from './enterToProjekt';
+import fromProjects from './fromprojects';
+import fromProjectsToWork from './fromprojectstowork';
+import fromNext from './fromnext';
+import toNext from './tonext';
 import * as myScroll from './myscroll';
+import * as slideIn from './intersection';
+import * as spiner from './loader';
 
 barba.use(barbaPrefetch);
 
@@ -21,12 +30,29 @@ const resetNav = () => gsap.set('.rightnav-link', {
 
 barba.hooks.afterEnter(({ next }) => {
   myScroll.init(next.container);
+   slideIn.init(next.container);
+  spiner.init(next.container);
 });
 
 barba.init({
   timeout: 5000,
   debug: true,
   transitions: [
+    {
+      name: 'projects',
+      from:{
+        namespace:['work']
+      },
+      leave: ({
+        current
+      }) => leaveToProject(current.container),
+      to: {
+        namespace: ['one', 'two', 'tree', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'mobile'],
+      },
+      enter: ({
+        next
+      }) => enterToProject(next.container),
+    },
     {
       name: 'leaveToProject',
       to: {
@@ -50,6 +76,34 @@ barba.init({
       },
       leave: ({ current }) => animLeave(current.container),
       enter: ({ next }) => animEnter(next.container),
+    },
+     {
+      name: 'from-projects',
+      from: {
+        namespace: ['one', 'two', 'tree', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'mobile'],
+      },
+      leave: ({
+        current
+      }) => fromProjects(current.container),
+      to: {
+        namespace: ['work'],
+      },
+      enter: ({
+        next
+      }) => fromProjectsToWork(next.container)
+    },
+       {
+      name: 'next',
+      to: {
+        namespace: ['two', 'tree', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'mobile','one'],
+      },
+      leave: ({
+        current
+      }) => fromNext(current.container),
+    
+      enter: ({
+        next
+      }) => toNext(next.container)
     },
   ],
 });
