@@ -18,4 +18,18 @@ export function init(container) {
       }
     })
   });
+    rightNav.forEach(link => link.addEventListener('click', rightNavClick));
+
+  function rightNavClick(e) {
+    smoothScroll(e);
+
+    function smoothScroll(e) {
+      e.preventDefault();
+      const targetId = e.currentTarget.getAttribute("href");
+      container.querySelector(targetId).scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }
+  };
 }
