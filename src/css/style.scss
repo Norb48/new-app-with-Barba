@@ -18,7 +18,36 @@ ul {
  list-style: none;
 }
 
+//loader
 
+.loader {
+ position: fixed;
+ display: flex;
+ top: 0;
+ left: 0;
+ width: 3.8rem;
+ height: 3.8rem;
+ border-radius: 50px;
+ margin: 45vh 45%;
+ border: .3rem solid black;
+ z-index:9;
+ background-color:transparent;
+ animation: spiner  1s linear  infinite;
+}
+@keyframes spiner{
+ 0%{
+  transform:rotate3d(1,9,4,0deg); 
+}
+ 100%{
+  transform: rotate3d(1,9,4,360deg);
+ }
+}
+.loader-fade{opacity: 1; 
+animation: fade .5s linear forwards;}
+@keyframes fade{
+ 100%{opacity: 0;
+ visibility: hidden;}
+}
 
 
 
@@ -309,22 +338,36 @@ ul {
 }
 
 
-.wrapper-page--img {
- position: relative;
- width: 100%;
- height: 100%;
- margin: 0 auto;
- background-image: url(/src/images/7.jpg);
- background-position: center;
- background-size: cover;
+//intersectionObserver animation
+.from-bottom {
+ transform: translateY(15vh);
 }
 
-.wrapper-page--img1 {
+.from-bottom {
+ transition: opacity .5s .25s ease-in,
+  transform .6s ease-in;
+ opacity: 0;
+}
+
+.from-bottom.show {
+ transform: translateY(0);
+ opacity: 1;
+}
+
+//end of page , slide to next
+.next {
  position: relative;
+ display: flex;
  width: 100%;
- height: 100%;
- margin: 0 auto;
- background-image: url(/src/images/8.jpg);
- background-position: center;
- background-size: cover;
+ height: 90vh;
+ justify-content: center;
+ align-items: center;
+}
+
+.title-next {
+ position: absolute;
+ font-family: royalp;
+ font-size: 4rem;
+ color: white;
+ text-transform: uppercase;
 }
