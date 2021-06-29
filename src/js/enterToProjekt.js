@@ -1,18 +1,22 @@
 import {gsap} from 'gsap';
+import CustomEase  from "gsap/CustomEase";
+gsap.registerPlugin(CustomEase);
 
-const enterToProjekt = (container) => {
+const enterToProject = (container) => {
+const main = container.querySelector('.scroll')
 
-  const main = container.querySelector('.scroll')
-  const rightLinks = container.querySelectorAll('.rightnav-link')
- 
-  const tl=gsap.timeline({
-    defaults:{duration:0.4,ease:'power1.out'}
+
+  const tl = gsap.timeline({
+    defaults: {
+      duration: .7,
+      ease: CustomEase.create("inoutHoop", ".7,.1,.3,.9")
+    }
   })
-    tl.fromTo(main,{xPercent:110}, {xPercent:0})
-      .fromTo(rightLinks,{autoAlpha:0}, {autoAlpha:1},'+=0.22')
-    
-    
-    
-       return tl
+  tl.fromTo(main, {xPercent: 110}, {xPercent: 0},'-= 0.1')
+
+
+
+
+  return tl
 }
-export default enterToProjekt
+export default enterToProject
