@@ -1,11 +1,12 @@
 import gsap from 'gsap';
-
+import CustomEase from "gsap/CustomEase";
+gsap.registerPlugin(CustomEase);
 
 function toNext(container) {
 const main = container.querySelectorAll('.scroll')
 
  const tl = gsap.timeline({
-  defaults: { duration:0.6, ease: 'power2.out' }
+  defaults: { duration:0.8, ease: CustomEase.create("inoutHoop", ".7,.1,.3,.9") }
  });
   
 tl.fromTo(main,{yPercent:120},{yPercent:0})
